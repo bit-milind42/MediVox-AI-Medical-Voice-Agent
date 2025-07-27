@@ -10,15 +10,25 @@ import Vapi from '@vapi-ai/web';
 import { toast } from "sonner";
 
 
+export type MedicalReport = {
+  conversationSummary?: string;
+  symptoms?: string[] | string;
+  duration?: string;
+  severity?: string;
+  additionalDetails?: string;
+  medications?: string[] | string;
+  recommendations?: string[] | string;
+}
+
 export type sessionDetail = {
   id: number,
   notes: string,
   sessionId: string,
-  report: JSON,
+  report: MedicalReport | null,
   selectedDoctor: doctorAgent,
   CreatedOn: string,
   createdBy: string,
-  
+  conversation?: any[], // Array of chat messages
 }
 type messages = {
   role: string,
@@ -191,9 +201,9 @@ function MedicalAgentPage() {
 
   if (loading) {
     return (
-      <div className="p-5 border rounded-3xl bg-secondary">
+      <div className="p-5 border border-gray-200 dark:border-gray-800 rounded-3xl bg-white dark:bg-black">
         <div className="flex items-center justify-center h-64">
-          <p>Loading session details...</p>
+          <p className="text-black dark:text-white">Loading session details...</p>
         </div>
       </div>
     );
@@ -201,7 +211,7 @@ function MedicalAgentPage() {
 
   if (error) {
     return (
-      <div className="p-5 border rounded-3xl bg-secondary">
+      <div className="p-5 border border-gray-200 dark:border-gray-800 rounded-3xl bg-white dark:bg-black">
         <div className="flex items-center justify-center h-64">
           <p className="text-red-500">{error}</p>
         </div>
@@ -211,30 +221,35 @@ function MedicalAgentPage() {
 
   if (!sessionDetail) {
     return (
-      <div className="p-5 border rounded-3xl bg-secondary">
+      <div className="p-5 border border-gray-200 dark:border-gray-800 rounded-3xl bg-white dark:bg-black">
         <div className="flex items-center justify-center h-64">
-          <p>No session data available</p>
+          <p className="text-black dark:text-white">No session data available</p>
         </div>
       </div>
     );
   }
 
   const GenerateReport = async () => {
-    setLoading(true);
-    const result = await axios.post('/api/generate-report', {
-      messages: messages,
-      sessionDetail: sessionDetail,
-      sessionId: sessionId,
-    });
+    try {
+      const result = await axios.post('/api/generate-report', {
+        messages: messages,
+        sessionDetail: sessionDetail,
+        sessionId: sessionId,
+      });
+      return result.data;
+    } catch (error) {
+      console.error('Error generating report:', error);
+      throw error;
+    }
   }
 
   return (
-    <div className="p-5 border rounded-3xl bg-secondary">
+    <div className="p-5 border border-gray-200 dark:border-gray-800 rounded-3xl bg-white dark:bg-black">
       <div className="flex justify-between items-center">
-        <h2 className="p-1 px-2 border rounded-md flex gap-2 items-center ">
+        <h2 className="p-1 px-2 border border-gray-200 dark:border-gray-700 rounded-md flex gap-2 items-center bg-gray-50 dark:bg-gray-900 text-black dark:text-white">
           <Circle className={`h-4 w-4 rounded-full ${callStarted ? 'bg-green-500' : 'bg-red-500'}`} />{callStarted ? 'Connected' : 'Not Connected'}
         </h2>
-        <h2 className="font-bold text-xl text-gray-400">
+        <h2 className="font-bold text-xl text-gray-400 dark:text-gray-500">
           00:00
         </h2>
       </div>
@@ -247,7 +262,7 @@ function MedicalAgentPage() {
               alt={sessionDetail.selectedDoctor.specialist || 'Doctor'}
               width={120}
               height={120}
-              className="w-[100px] h-[100px] rounded-full object-cover"
+              className="w-[100px] h-[100px] rounded-full object-cover border-2 border-gray-200 dark:border-gray-700"
               onError={(e) => {
                 console.error("Image failed to load:", sessionDetail.selectedDoctor.image);
                 // Hide the image if it fails to load
@@ -259,15 +274,15 @@ function MedicalAgentPage() {
             />
           </div>
         ) : (
-          <div className="w-[100px] h-[100px] rounded-full bg-gray-300 flex items-center justify-center">
-            <span className="text-gray-500">No Image</span>
+          <div className="w-[100px] h-[100px] rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center border-2 border-gray-200 dark:border-gray-700">
+            <span className="text-gray-500 dark:text-gray-400">No Image</span>
           </div>
         )}
 
-        <h2 className="mt-2 text-lg font-semibold">
+        <h2 className="mt-2 text-lg font-semibold text-black dark:text-white">
           {sessionDetail.selectedDoctor?.specialist || 'Unknown Specialist'}
         </h2>
-        <p className="text-sm text-gray-400">AI Medical Voice Agent</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400">AI Medical Voice Agent</p>
 
         {/* {sessionDetail.notes && (
           <div className="mt-4 p-3 bg-white rounded-lg max-w-md">
@@ -280,13 +295,13 @@ function MedicalAgentPage() {
 
           {messages?.slice(-4).map((msg, index) =>(
            
-              <h2 className='text-gray-400 p-2' key={index}>{msg.role}:{msg.text}</h2>
+              <h2 className='text-gray-600 dark:text-gray-400 p-2' key={index}>{msg.role}:{msg.text}</h2>
             
           ))}
-          {liveTranscript && liveTranscript?.length > 0 && <h2 className='text-lg'>{currentRole}:{liveTranscript}</h2>}
+          {liveTranscript && liveTranscript?.length > 0 && <h2 className='text-lg text-black dark:text-white'>{currentRole}:{liveTranscript}</h2>}
         </div>
 
-        {!callStarted ? <Button className="mt-20" onClick={StartCall} disabled={loading}>{loading ? <Loader className="mr-2 animate-spin" /> :
+        {!callStarted ? <Button className="mt-20 bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200" onClick={StartCall} disabled={loading}>{loading ? <Loader className="mr-2 animate-spin" /> :
           <PhoneCall />} Start Call
         </Button> : <Button variant={'destructive'} className="mt-20" onClick={EndCall} disabled={loading}>
           {loading ? <Loader className="mr-2 animate-spin" /> :

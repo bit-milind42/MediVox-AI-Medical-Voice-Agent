@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Dialog,
   DialogClose,
@@ -17,6 +17,8 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import DoctorAgentCard, { doctorAgent } from "./DoctorAgentCard";
 import SuggestedDoctorCard from "./SuggestedDoctorCard";
+import { useAuth } from "@clerk/nextjs";
+import { sessionDetail } from "../medical-agent/[sessionId]/page";
 
 
 
@@ -26,6 +28,20 @@ function AddNewSessionDialog() {
   const [suggestedDoctors, setSuggestedDoctors] = React.useState<doctorAgent[]>([]);
   const [selectedDoctor, setSelectedDoctor] = React.useState<doctorAgent | null>(null);
   const router = useRouter();
+  const [historyList, setHistoryList] = React.useState<sessionDetail[]>([]);
+
+  const {has}=useAuth();
+      // @ts-ignore
+      const paidUser = has && has({plan:'pro'});
+      useEffect(() => {
+              GetHistoryList();
+          }, []);
+      
+          const GetHistoryList = async () => {
+              const result = await axios.get('/api/session-chat?sessionId=all');
+              console.log(result.data);
+              setHistoryList(result.data);
+          }
 
   const OnClickNext = async () => {
     setLoading(true);
@@ -82,24 +98,24 @@ function AddNewSessionDialog() {
     <div>
       <Dialog>
         <DialogTrigger>
-          <Button className="mt-3">+ Start a Consultation</Button>
+          <Button className="mt-3 bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200" disabled={!paidUser && historyList.length >= 1}>+ Start a Consultation</Button>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="bg-white dark:bg-black border-gray-200 dark:border-gray-800">
           <DialogHeader>
-            <DialogTitle>Add Basic Details</DialogTitle>
+            <DialogTitle className="text-black dark:text-white">Add Basic Details</DialogTitle>
             <DialogDescription asChild>
               {suggestedDoctors.length === 0 ? (
                 <div>
-                  <h2>Add Symptoms or Any Other Details</h2>
+                  <h2 className="text-gray-700 dark:text-gray-300">Add Symptoms or Any Other Details</h2>
                   <Textarea
                     placeholder="Add Details Here..."
-                    className="mt-1 h-[200px]"
+                    className="mt-1 h-[200px] bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 text-black dark:text-white"
                     onChange={(e) => setNote(e.target.value)}
                   />
                 </div>
               ) : (
                 <div>
-                  <h2>Select the doctor</h2>
+                  <h2 className="text-gray-700 dark:text-gray-300">Select the doctor</h2>
                   <div className="grid grid-cols-3 gap-5 mt-4">
                     {/* suggested doctors */}
                     {suggestedDoctors.map((doctor, index) => (
@@ -118,17 +134,17 @@ function AddNewSessionDialog() {
           </DialogHeader>
           <DialogFooter>
             <DialogClose>
-              <Button variant={"outline"}>
+              <Button variant={"outline"} className="border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900">
                 Cancel
               </Button>
             </DialogClose>
             {
               suggestedDoctors.length === 0 ? (
-                <Button disabled={!note || loading} onClick={() => OnClickNext()}>
+                <Button disabled={!note || loading} onClick={() => OnClickNext()} className="bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200">
                   Next {loading ? <Loader2 className='animate-spin' /> : <ArrowRight />}
                 </Button>
               ) : (
-                <Button disabled={loading || !selectedDoctor} onClick={() => onStartConsultation(selectedDoctor!)}>
+                <Button disabled={loading || !selectedDoctor} onClick={() => onStartConsultation(selectedDoctor!)} className="bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200">
                   Start Consultation {loading ? <Loader2 className='animate-spin' /> : <ArrowRight />}
                 </Button>
               )

@@ -2,13 +2,15 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 import {
-  IconArrowWaveRightUp,
-  IconBoxAlignRightFilled,
-  IconBoxAlignTopLeft,
-  IconClipboardCopy,
-  IconFileBroken,
-  IconSignature,
-  IconTableColumn,
+  IconStethoscope,
+  IconBrain,
+  IconMicrophone,
+  IconClock24,
+  IconReport,
+  IconUsers,
+  IconShield,
+  IconRobot,
+  IconCalendar,
 } from "@tabler/icons-react";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 
@@ -28,51 +30,55 @@ export function FeatureBentoGrid() {
     </BentoGrid>
   );
 }
-const Skeleton = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>
+const MedicalIcon = ({ children }: { children: React.ReactNode }) => (
+  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 items-center justify-center">
+    <div className="text-white text-4xl">
+      {children}
+    </div>
+  </div>
 );
+
 const items = [
   {
-    title: "The Dawn of Innovation",
-    description: "Explore the birth of groundbreaking ideas and inventions.",
-    header: <Skeleton />,
-    icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
+    title: "AI Voice Consultations",
+    description: "Conduct natural conversations with patients using advanced AI voice technology for initial consultations and triage.",
+    header: <MedicalIcon><IconMicrophone /></MedicalIcon>,
+    icon: <IconMicrophone className="h-4 w-4 text-white" />,
   },
   {
-    title: "The Digital Revolution",
-    description: "Dive into the transformative power of technology.",
-    header: <Skeleton />,
-    icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
+    title: "24/7 Patient Support",
+    description: "Provide round-the-clock patient assistance with instant responses to medical queries and appointment scheduling.",
+    header: <MedicalIcon><IconClock24 /></MedicalIcon>,
+    icon: <IconClock24 className="h-4 w-4 text-white" />,
   },
   {
-    title: "The Art of Design",
-    description: "Discover the beauty of thoughtful and functional design.",
-    header: <Skeleton />,
-    icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
+    title: "Intelligent Symptom Analysis",
+    description: "Leverage AI to analyze patient symptoms and provide preliminary assessments with medical accuracy.",
+    header: <MedicalIcon><IconBrain /></MedicalIcon>,
+    icon: <IconBrain className="h-4 w-4 text-white" />,
   },
   {
-    title: "The Power of Communication",
-    description:
-      "Understand the impact of effective communication in our lives.",
-    header: <Skeleton />,
-    icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
+    title: "Automated Medical Reports",
+    description: "Generate comprehensive medical reports from consultations using advanced AI analysis and documentation.",
+    header: <MedicalIcon><IconReport /></MedicalIcon>,
+    icon: <IconReport className="h-4 w-4 text-white" />,
   },
   {
-    title: "The Pursuit of Knowledge",
-    description: "Join the quest for understanding and enlightenment.",
-    header: <Skeleton />,
-    icon: <IconArrowWaveRightUp className="h-4 w-4 text-neutral-500" />,
+    title: "Smart Appointment Management",
+    description: "Streamline scheduling with intelligent calendar integration and automated patient reminders.",
+    header: <MedicalIcon><IconCalendar /></MedicalIcon>,
+    icon: <IconCalendar className="h-4 w-4 text-white" />,
   },
   {
-    title: "The Joy of Creation",
-    description: "Experience the thrill of bringing ideas to life.",
-    header: <Skeleton />,
-    icon: <IconBoxAlignTopLeft className="h-4 w-4 text-neutral-500" />,
+    title: "HIPAA Compliant Security",
+    description: "Ensure patient data protection with enterprise-grade security and full HIPAA compliance.",
+    header: <MedicalIcon><IconShield /></MedicalIcon>,
+    icon: <IconShield className="h-4 w-4 text-white" />,
   },
   {
-    title: "The Spirit of Adventure",
-    description: "Embark on exciting journeys and thrilling discoveries.",
-    header: <Skeleton />,
-    icon: <IconBoxAlignRightFilled className="h-4 w-4 text-neutral-500" />,
+    title: "Multi-Doctor Support",
+    description: "Connect patients with the right specialists using AI-powered doctor matching and availability tracking.",
+    header: <MedicalIcon><IconUsers /></MedicalIcon>,
+    icon: <IconUsers className="h-4 w-4 text-white" />,
   },
 ];

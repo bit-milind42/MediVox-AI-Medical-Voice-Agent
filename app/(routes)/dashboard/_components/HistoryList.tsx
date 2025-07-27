@@ -22,10 +22,10 @@ function HistoryList() {
     return (
         <div className="mt-10">
             {history.length == 0?
-            <div className='flex items-center flex-col justify-center p-7 border border-dashed rounded-2xl border-2'> 
+            <div className='flex items-center flex-col justify-center p-7 border border-dashed rounded-2xl border-2 border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900'> 
                 <Image src={'/medical-assistance.png'} alt='empty' width={150} height={150}/>
-                <h2 className="font-bold text-xl mt-2">No Recent Consultations</h2>
-                <p>It looks like you haven't consulted with any doctors yet.</p>
+                <h2 className="font-bold text-xl mt-2 text-black dark:text-white">No Recent Consultations</h2>
+                <p className="text-gray-600 dark:text-gray-400">It looks like you haven't consulted with any doctors yet.</p>
                 <AddNewSessionDialog/>
             </div>
             :<div>

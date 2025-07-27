@@ -42,7 +42,7 @@ export const AIDoctorAgents = [
         image: "/doctor5.png",
         agentPrompt: "You are a motivating Nutritionist AI. Ask about current diet or goals and suggest quick, healthy tips.",
         voiceId: "eileen",
-        subscriptionRequired: false
+        subscriptionRequired: true
     },
     {
         id: 6,

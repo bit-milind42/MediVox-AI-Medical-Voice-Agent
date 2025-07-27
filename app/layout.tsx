@@ -24,8 +24,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI medical voice agent",
-  description: "AI medical voice agent for patient interaction",
+  title: "MediVox AI - AI Medical Voice Agent",
+  description: "Advanced AI medical voice agent for intelligent patient consultations and healthcare assistance",
 };
 
 export default function RootLayout({
@@ -35,9 +35,9 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-black`}
       >
         <Provider>
           {children}

@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏥 MediVox AI - AI Medical Voice Agent
 
-## Getting Started
+An AI-powered healthcare platform that enables voice-based medical consultations with intelligent symptom analysis and automated report generation.
 
-First, run the development server:
+## 📸 Screenshots
+
+### Dashboard View
+![Dashboard Screenshot](https://raw.githubusercontent.com/bit-milind42/MediVox-AI-Medical-Voice-Agent/refs/heads/main/Landing-Page.png)
+
+### Voice Consultation Interface
+![Voice Consultation Screenshot](https://raw.githubusercontent.com/bit-milind42/MediVox-AI-Medical-Voice-Agent/refs/heads/main/AI-Medical-agent.png)
+
+## ✨ Key Features
+
+- **AI Voice Consultations** - Real-time conversations with specialized medical AI agents
+- **Smart Report Generation** - Automated medical reports with symptom analysis
+- **Multiple Specialties** - 10+ medical specialists available
+- **Session History** - Track and manage consultation history
+- **Secure Authentication** - Protected user data and sessions
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js 15, TypeScript, Tailwind CSS
+- **Backend**: PostgreSQL, Drizzle ORM
+- **AI Services**: OpenAI GPT-4, Vapi Voice AI
+- **Authentication**: Clerk
+- **Deployment**: Vercel
+
+## 🚀 Quick Start
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   # Add your API keys
+   ```
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open** [http://localhost:3000](http://localhost:3000)
+
+## � Environment Variables
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+DATABASE_URL=your_postgresql_url
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_key
+CLERK_SECRET_KEY=your_clerk_secret
+OPEN_ROUTER_API_KEY=your_openai_key
+NEXT_PUBLIC_VAPI_API_KEY=your_vapi_key
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Deploy to Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/ai-medical-voice-agent)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⚠️ Disclaimer
 
-## Learn More
+This AI assistant is for informational purposes only and should not replace professional medical advice.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Built with ❤️ for better healthcare**
