@@ -58,7 +58,7 @@ NEXT_PUBLIC_VAPI_API_KEY=your_vapi_key
 
 ## 🚀 Deploy to Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/ai-medical-voice-agent)
+[![Deploy with Vercel](https://vercel.com/button)](https://medi-vox-ai-medical-voice-agent.vercel.app/)
 
 ## ⚠️ Disclaimer
 
