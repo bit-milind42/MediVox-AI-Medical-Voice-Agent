@@ -4,11 +4,22 @@ An AI-powered healthcare platform that enables voice-based medical consultations
 
 ## 📸 Screenshots
 
-### Dashboard View
-![Dashboard Screenshot](https://raw.githubusercontent.com/bit-milind42/MediVox-AI-Medical-Voice-Agent/refs/heads/main/Landing-Page.png)
+> 📷 **Screenshots coming soon!** 
+> 
+> We're working on adding visual demonstrations of our platform. This section will showcase:
+> - Dashboard interface with medical agent selection
+> - Voice consultation interface in action
+> - Medical report generation process
+> 
+> *To add screenshots: Place your images in the root directory and update the image paths below.*
 
-### Voice Consultation Interface
-![Voice Consultation Screenshot](https://raw.githubusercontent.com/bit-milind42/MediVox-AI-Medical-Voice-Agent/refs/heads/main/AI-Medical-agent.png)
+<!-- 
+### Dashboard View
+![Dashboard Screenshot](./Landing-Page.png)
+
+### Voice Consultation Interface  
+![Voice Consultation Screenshot](./AI-Medical-agent.png)
+-->
 
 ## ✨ Key Features
 

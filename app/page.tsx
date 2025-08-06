@@ -143,11 +143,11 @@ export default function HeroSectionOne() {
               <div className="text-lg font-semibold text-gray-200 mb-1">Accuracy Rate</div>
               <div className="text-gray-400">In symptom analysis and triage</div>
             </div>
-            <div className="p-6">
+            {/* <div className="p-6">
               <div className="text-4xl font-bold text-white mb-2">24/7</div>
               <div className="text-lg font-semibold text-gray-200 mb-1">Availability</div>
               <div className="text-gray-400">Round-the-clock patient support</div>
-            </div>
+            </div> */}
             <div className="p-6">
               <div className="text-4xl font-bold text-white mb-2">60%</div>
               <div className="text-lg font-semibold text-gray-200 mb-1">Time Saved</div>
