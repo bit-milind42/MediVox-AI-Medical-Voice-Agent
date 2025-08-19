@@ -10,8 +10,7 @@ An AI-powered healthcare platform that enables voice-based medical consultations
 > - Dashboard interface with medical agent selection
 > - Voice consultation interface in action
 > - Medical report generation process
-> 
-> *To add screenshots: Place your images in the root directory and update the image paths below.*
+>
 
 <!-- 
 ### Dashboard View
